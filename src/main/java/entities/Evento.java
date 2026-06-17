@@ -1,8 +1,10 @@
 package entities;
+
 import enums.TipoEvento;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 
 @Entity
@@ -11,9 +13,9 @@ import java.time.LocalDate;
 public class Evento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Student_id")
-    private long id;
+    @GeneratedValue
+    @Column
+    private UUID id;
 
     @Column(name = "titoloEvento", length = 200, nullable = false)
     private String titolo;
@@ -31,16 +33,21 @@ public class Evento {
     @Column
     private int maxPartecipantiNum;
 
+    @ManyToOne
+    @JoinColumn(name = "Location_id")
+    private Location location;
+
     public Evento() {
     }
 
 
-    public Evento(String titolo, LocalDate data, String descrizione, TipoEvento tipoEvento, int maxPartecipantiNum) {
+    public Evento(String titolo, LocalDate data, String descrizione, TipoEvento tipoEvento, int maxPartecipantiNum, Location location) {
         this.titolo = titolo;
         this.data = LocalDate.now();
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
         this.maxPartecipantiNum = maxPartecipantiNum;
+        this.location = location;
     }
 
     @Override

@@ -3,8 +3,9 @@ package DAO;
 import entities.Evento;
 import jakarta.persistence.EntityManager;
 
-public class EventoDAO {
+import java.util.UUID;
 
+public class EventoDAO {
     private EntityManager entityManager;
 
     public EventoDAO(EntityManager entityManager) {
@@ -17,10 +18,15 @@ public class EventoDAO {
         entityManager.getTransaction().commit();
     }
 
-    public void elimina(Evento evento) {
+    public void rimuovi(UUID id) {
         entityManager.getTransaction().begin();
-        Evento eventoManaged = entityManager.merge(evento);
-        entityManager.remove(evento);
+        Evento evento = entityManager.find(Evento.class, id);
+        if (evento != null) {
+            entityManager.remove(evento);
+            System.out.println("Evento rimosso!");
+        } else {
+            System.out.println("Evento non trovato!");
+        }
         entityManager.getTransaction().commit();
     }
 
