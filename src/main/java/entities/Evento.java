@@ -8,9 +8,10 @@ import java.util.UUID;
 
 
 @Entity
-
 @Table(name = "events")
-public class Evento {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "Tema evento")
+public abstract class Evento {
 
     @Id
     @GeneratedValue
@@ -47,6 +48,54 @@ public class Evento {
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
         this.maxPartecipantiNum = maxPartecipantiNum;
+        this.location = location;
+    }
+
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public TipoEvento getTipoEvento() {
+        return tipoEvento;
+    }
+
+    public void setTipoEvento(TipoEvento tipoEvento) {
+        this.tipoEvento = tipoEvento;
+    }
+
+    public int getMaxPartecipantiNum() {
+        return maxPartecipantiNum;
+    }
+
+    public void setMaxPartecipantiNum(int maxPartecipantiNum) {
+        this.maxPartecipantiNum = maxPartecipantiNum;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
         this.location = location;
     }
 

@@ -7,13 +7,16 @@
         <class>entities.Persona</class>
         <class>entities.Location</class>
         <class>entities.Partecipazione</class>
+        <class>entities.PartitaDiCalcio</class>
+        <class>entities.Concerto</class>
+        <class>entities.GaraDiAtletica</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/mio_database"/>
             <!-- Nel mio caso la porta è 5433 nel vostro sarà 5432 (ovviamente se non l'avete cambiata) -->
             <property name="jakarta.persistence.jdbc.user" value="postgres"/>
             <property name="jakarta.persistence.jdbc.password" value="1234"/>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>
